@@ -1,12 +1,10 @@
 import os
-import pathlib
-
-import src
+from pathlib import Path
 
 # Define the MLflow tracking URI to use ml_project directory
 MLFLOW_TRACKING_DIR = os.path.join(os.getcwd(), "mlflow_artifacts")
 
-PACKAGE_ROOT = pathlib.Path(src.__file__).resolve().parent
+PACKAGE_ROOT = Path(__file__).resolve().parent
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 DATASET_DIR = PACKAGE_ROOT / "DataSets"
 
