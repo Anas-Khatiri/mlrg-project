@@ -20,11 +20,11 @@ class TemporalTransformer(BaseEstimator, TransformerMixin):
 
         return X
 
-
 def logarithm_transformer(data):
+    if np.any(data <= 0):
+        raise ValueError("Log transform is only defined for positive values.")
     return np.log(data)
 
-from sklearn.base import BaseEstimator, TransformerMixin
 
 class Mapper(BaseEstimator, TransformerMixin):
     """Transforme des variables catégoriques en valeurs numériques selon un mapping donné."""

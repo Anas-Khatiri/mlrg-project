@@ -2,7 +2,7 @@ from typing import List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, ValidationError, ConfigDict
 
 from configs import core
 
@@ -42,10 +42,10 @@ def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional
             inputs=validated_data.replace({np.nan: None}).to_dict(orient="records")
         )
     except ValidationError as error:
-        errors = error.json()
+        errors = error.errors()
+        print("ValidationError:", errors)
 
     return validated_data, errors
-
 
 class HouseDataInputSchema(BaseModel):
     Alley: Optional[str]
@@ -129,6 +129,10 @@ class HouseDataInputSchema(BaseModel):
     SecondFlrSF: Optional[int]  # renamed
     ThreeSsnPorch: Optional[int]  # renamed
 
+    model_config = ConfigDict(strict=True)
+
 
 class MultipleHouseDataInputs(BaseModel):
     inputs: List[HouseDataInputSchema]
+
+    model_config = ConfigDict(strict=True)
