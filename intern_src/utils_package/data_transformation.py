@@ -23,3 +23,22 @@ class TemporalTransformer(BaseEstimator, TransformerMixin):
 
 def logarithm_transformer(data):
     return np.log(data)
+
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class Mapper(BaseEstimator, TransformerMixin):
+    """Transforme des variables catégoriques en valeurs numériques selon un mapping donné."""
+
+    def __init__(self, variables, mappings):
+        self.variables = variables
+        self.mappings = mappings
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X = X.copy()
+        for var in self.variables:
+            if var in X.columns:
+                X[var] = X[var].map(self.mappings)
+        return X
