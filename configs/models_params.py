@@ -4,7 +4,7 @@ RANDOM_STATE = 0
 LASSO_PARAMS = {
     "alpha": [0.0001, 0.001, 0.01, 0.1],  # Forces de régularisation
     "max_iter": [100, 500, 1000],  # Nombre max d'itérations pour la convergence
-    #"selection": ["random"]  # Méthode de mise à jour des coefficients
+    # "selection": ["random"]  # Méthode de mise à jour des coefficients
 }
 
 # Paramètres pour XGBoost (existant, à conserver)

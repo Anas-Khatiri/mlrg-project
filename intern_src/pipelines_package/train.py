@@ -1,19 +1,19 @@
-import os
-
-import mlflow
-import mlflow.sklearn
-from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import train_test_split, GridSearchCV
 from itertools import product
 
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+
+from configs import core, models_params
+from intern_src.pipelines_package.models_pipeline import (
+    create_lasso_pipeline, create_mlp_pipeline, create_xgb_pipeline)
 from intern_src.utils_package.data_ingestion import load_dataset, save_pipeline
 from intern_src.utils_package.data_transformation import logarithm_transformer
-from configs import core, models_params
-from intern_src.pipelines_package.models_pipeline import create_lasso_pipeline, create_xgb_pipeline, create_mlp_pipeline
 
 
 def run_training() -> None:
-    """Train the model with multiple alpha values from the configuration."""
+    """Train the model with multiple
+    alpha values from the configuration.
+    """
     # read training data
     data = load_dataset(file_name=core.TRAINING_DATA_FILE)
 
@@ -27,11 +27,13 @@ def run_training() -> None:
     y_train = logarithm_transformer(data=y_train)
     y_test = logarithm_transformer(data=y_test)
 
-    ################# Training Lasso ################
+    # Training Lasso
     best_rmse = float("inf")
     best_model = None
 
-    for alpha, max_iter in product(models_params.LASSO_PARAMS["alpha"], models_params.LASSO_PARAMS["max_iter"]):
+    for alpha, max_iter in product(
+        models_params.LASSO_PARAMS["alpha"], models_params.LASSO_PARAMS["max_iter"]
+    ):
         model_pipeline = create_lasso_pipeline(alpha=alpha, max_iter=max_iter)
         model_pipeline.fit(X_train, y_train)
         predictions = model_pipeline.predict(X_test)
@@ -41,9 +43,12 @@ def run_training() -> None:
             best_rmse = rmse
             best_model = model_pipeline
 
-    ################# Training XGBoost ################
+    # Training XGBoost
     for n_estimators, learning_rate, max_depth in product(
-            models_params.XGB_PARAMS["n_estimators"], models_params.XGB_PARAMS["learning_rate"], models_params.XGB_PARAMS["max_depth"]):
+        models_params.XGB_PARAMS["n_estimators"],
+        models_params.XGB_PARAMS["learning_rate"],
+        models_params.XGB_PARAMS["max_depth"],
+    ):
 
         xgb_pipeline = create_xgb_pipeline(n_estimators, learning_rate, max_depth)
         xgb_pipeline.fit(X_train, y_train)
@@ -54,12 +59,15 @@ def run_training() -> None:
             best_rmse = rmse
             best_model = xgb_pipeline
 
-    ################# Training MLP ################
+    # Training MLP
     for hidden_layer, activation in product(
-            models_params.MLP_PARAMS["hidden_layer_sizes"], models_params.MLP_PARAMS["activation"]):
+        models_params.MLP_PARAMS["hidden_layer_sizes"],
+        models_params.MLP_PARAMS["activation"],
+    ):
 
-        mlp_pipeline = create_mlp_pipeline(hidden_layer=hidden_layer,
-                                           activation=activation)
+        mlp_pipeline = create_mlp_pipeline(
+            hidden_layer=hidden_layer, activation=activation
+        )
         mlp_pipeline.fit(X_train, y_train)
         predictions = mlp_pipeline.predict(X_test)
         rmse = mean_squared_error(y_test, predictions) ** 0.5

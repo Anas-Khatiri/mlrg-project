@@ -1,6 +1,4 @@
-import os
 from pathlib import Path
-
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
@@ -28,72 +26,94 @@ VARIABLES_TO_RENAME = {
 }
 
 # Liste des features attendues
-FEATURES = ['Id', 'MSSubClass', 'MSZoning', 'LotFrontage', 'LotArea', 'Street', 'Alley',
-            'LotShape', 'LandContour', 'Utilities', 'LotConfig', 'LandSlope',
-            'Neighborhood', 'Condition1', 'Condition2', 'BldgType', 'HouseStyle',
-            'OverallQual', 'OverallCond', 'YearBuilt', 'YearRemodAdd', 'RoofStyle',
-            'RoofMatl', 'Exterior1st', 'Exterior2nd', 'MasVnrType', 'MasVnrArea',
-            'ExterQual', 'ExterCond', 'Foundation', 'BsmtQual', 'BsmtCond',
-            'BsmtExposure', 'BsmtFinType1', 'BsmtFinSF1', 'BsmtFinType2',
-            'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', 'Heating', 'HeatingQC',
-            'CentralAir', 'Electrical', 'FirstFlrSF', 'SecondFlrSF', 'LowQualFinSF',
-            'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath',
-            'BedroomAbvGr', 'KitchenAbvGr', 'KitchenQual', 'TotRmsAbvGrd',
-            'Functional', 'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageYrBlt',
-            'GarageFinish', 'GarageCars', 'GarageArea', 'GarageQual', 'GarageCond',
-            'PavedDrive', 'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch',
-            'ThreeSsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'Fence',
-            'MiscFeature', 'MiscVal', 'MoSold', 'YrSold', 'SaleType', 'SaleCondition']
-"""""""""""""""""""""""""""""""""
 FEATURES = [
+    "Id",
     "MSSubClass",
     "MSZoning",
     "LotFrontage",
+    "LotArea",
+    "Street",
+    "Alley",
     "LotShape",
     "LandContour",
+    "Utilities",
     "LotConfig",
+    "LandSlope",
     "Neighborhood",
+    "Condition1",
+    "Condition2",
+    "BldgType",
+    "HouseStyle",
     "OverallQual",
     "OverallCond",
-    "YearRemodAdd",
     "YearBuilt",
-    "GarageYrBlt",
+    "YearRemodAdd",
     "RoofStyle",
+    "RoofMatl",
     "Exterior1st",
+    "Exterior2nd",
+    "MasVnrType",
+    "MasVnrArea",
     "ExterQual",
+    "ExterCond",
     "Foundation",
     "BsmtQual",
+    "BsmtCond",
     "BsmtExposure",
     "BsmtFinType1",
+    "BsmtFinSF1",
+    "BsmtFinType2",
+    "BsmtFinSF2",
+    "BsmtUnfSF",
+    "TotalBsmtSF",
+    "Heating",
     "HeatingQC",
     "CentralAir",
-    "ThreeSsnPorch",  # renamed
-    "FirstFlrSF",  # renamed
-    "SecondFlrSF",  # renamed
+    "Electrical",
+    "FirstFlrSF",
+    "SecondFlrSF",
+    "LowQualFinSF",
     "GrLivArea",
     "BsmtFullBath",
+    "BsmtHalfBath",
+    "FullBath",
     "HalfBath",
+    "BedroomAbvGr",
+    "KitchenAbvGr",
     "KitchenQual",
     "TotRmsAbvGrd",
     "Functional",
     "Fireplaces",
     "FireplaceQu",
+    "GarageType",
+    "GarageYrBlt",
     "GarageFinish",
     "GarageCars",
     "GarageArea",
+    "GarageQual",
+    "GarageCond",
     "PavedDrive",
     "WoodDeckSF",
+    "OpenPorchSF",
+    "EnclosedPorch",
+    "ThreeSsnPorch",
     "ScreenPorch",
-    "SaleCondition",
-    # this one is only to calculate temporal variable:
+    "PoolArea",
+    "PoolQC",
+    "Fence",
+    "MiscFeature",
+    "MiscVal",
+    "MoSold",
     "YrSold",
+    "SaleType",
+    "SaleCondition",
 ]
-"""""""""""""""""""""""""""""""""""""""""
+
 # set train/test split
 TEST_SIZE = 0.2
 
 # to set the random seed
-#RANDOM_STATE = 0
+# RANDOM_STATE = 0
 
 # categorical variables
 CATEGORICAL_VARS = [
@@ -165,39 +185,44 @@ CATEGORICAL_FREQUENT_MISSING = [
     "Fence",
     "MiscFeature",
 ]
-""""""""""""""""""
+"""""" """""" """"""
 # categorical variables to encode
-#CATEGORICAL_VARS = ['MSSubClass',  'MSZoning',  'LotShape',  'LandContour',
+# CATEGORICAL_VARS = ['MSSubClass',  'MSZoning',  'LotShape',  'LandContour',
 #                    'LotConfig', 'Neighborhood', 'RoofStyle', 'Exterior1st',
 #                   'Foundation', 'CentralAir', 'Functional', 'PavedDrive',
 #                    'SaleCondition']
 
 
 # variables to map
-QUAL_VARS = ['ExterQual', 'BsmtQual',
-             'HeatingQC', 'KitchenQual', 'FireplaceQu']
+QUAL_VARS = ["ExterQual", "BsmtQual", "HeatingQC", "KitchenQual", "FireplaceQu"]
 
-EXPOSURE_VARS = ['BsmtExposure']
+EXPOSURE_VARS = ["BsmtExposure"]
 
-FINISH_VARS = ['BsmtFinType1']
+FINISH_VARS = ["BsmtFinType1"]
 
-GARAGE_VARS = ['GarageFinish']
+GARAGE_VARS = ["GarageFinish"]
 
-FENCE_VARS = ['Fence']
+FENCE_VARS = ["Fence"]
 
 
 # variable mappings
-QUAL_MAPPINGS = {'Po': 1, 'Fa': 2, 'TA': 3,
-                 'Gd': 4, 'Ex': 5, 'Missing': 0, 'NA': 0}
+QUAL_MAPPINGS = {"Po": 1, "Fa": 2, "TA": 3, "Gd": 4, "Ex": 5, "Missing": 0, "NA": 0}
 
-EXPOSURE_MAPPINGS = {'No': 1, 'Mn': 2, 'Av': 3, 'Gd': 4}
+EXPOSURE_MAPPINGS = {"No": 1, "Mn": 2, "Av": 3, "Gd": 4}
 
-FINISH_MAPPINGS = {'Missing': 0, 'NA': 0, 'Unf': 1,
-                   'LwQ': 2, 'Rec': 3, 'BLQ': 4, 'ALQ': 5, 'GLQ': 6}
+FINISH_MAPPINGS = {
+    "Missing": 0,
+    "NA": 0,
+    "Unf": 1,
+    "LwQ": 2,
+    "Rec": 3,
+    "BLQ": 4,
+    "ALQ": 5,
+    "GLQ": 6,
+}
 
-GARAGE_MAPPINGS = {'Missing': 0, 'NA': 0, 'Unf': 1, 'RFn': 2, 'Fin': 3}
-FENCE_MAPPINGS = {'Missing': 0, 'NA': 0,
-                  'MnWw': 1, 'GdWo': 2, 'MnPrv': 3, 'GdPrv': 4}
+GARAGE_MAPPINGS = {"Missing": 0, "NA": 0, "Unf": 1, "RFn": 2, "Fin": 3}
+FENCE_MAPPINGS = {"Missing": 0, "NA": 0, "MnWw": 1, "GdWo": 2, "MnPrv": 3, "GdPrv": 4}
 
 
 NUMERICAL_MISSING_VARS = ["LotFrontage", "MasVnrArea", "GarageYrBlt"]

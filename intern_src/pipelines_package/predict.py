@@ -3,9 +3,9 @@ import typing as t
 import numpy as np
 import pandas as pd
 
+from configs import core
 from intern_src.utils_package.data_ingestion import load_pipeline
 from intern_src.utils_package.data_prediction import validate_inputs
-from configs import core
 
 pipeline_file_name = f"{core.PIPELINE_SAVE_NAME}.pkl"
 model_pipeline = load_pipeline(file_name=pipeline_file_name)
