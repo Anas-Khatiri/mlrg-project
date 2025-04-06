@@ -11,3 +11,6 @@ fastapi
 uvicorn
 PyYAML==6.0.2
 xgboost
+flake8
+black
+isort
