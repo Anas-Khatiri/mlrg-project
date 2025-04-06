@@ -7,7 +7,8 @@ on:
     branches: [ "main" ]
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/nom_de_ton_image
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/demo-mlrg-project
+  IMAGE_TAG: python-app-1.0
 
 jobs:
   lint:
@@ -83,6 +84,3 @@ jobs:
         run: |
           docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
           docker push ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-        env:
-          IMAGE_NAME: anaskhatiri/demo-mlrg-project
-          IMAGE_TAG: python-app-1.0
