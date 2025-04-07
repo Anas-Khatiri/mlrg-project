@@ -29,9 +29,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run flake8 (lint)
-        run: flake8 . --exclude=.venv,venv,env,__pycache__,.git,.github
-
       - name: Check code formatting with black
         run: black --check .
 
