@@ -14,3 +14,4 @@ xgboost
 flake8
 black
 isort
+python-multipart
