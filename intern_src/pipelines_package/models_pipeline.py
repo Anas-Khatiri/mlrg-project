@@ -88,7 +88,7 @@ def create_base_pipeline():
 
 def create_lasso_pipeline(alpha=0.001, max_iter=100, tol=1e-2):
     """Crée un pipeline complet avec Lasso
-     et des hyperparamètres configurables."""
+    et des hyperparamètres configurables."""
     base_pipeline = create_base_pipeline()
 
     return Pipeline(

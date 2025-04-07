@@ -104,21 +104,18 @@ def test_feature_match(sample_input_data):
 
     # Vérifier que toutes les features attendues sont présentes
     missing_features = [
-        feature for feature in expected_features
-        if feature not in actual_features
+        feature for feature in expected_features if feature not in actual_features
     ]
     assert not missing_features, f"Colonnes manquantes : {missing_features}"
 
     # Vérifier qu'il n'y a pas de colonnes supplémentaires
     extra_features = [
-        feature for feature in actual_features
-        if feature not in expected_features
+        feature for feature in actual_features if feature not in expected_features
     ]
-    assert not extra_features, \
-        f"Colonnes en trop dans les données : {extra_features}"
+    assert not extra_features, f"Colonnes en trop dans les données : {extra_features}"
 
     # Vérifier que l'ordre des colonnes est respecté
-    assert (
-        actual_features == expected_features
-    ), (f"L'ordre des colonnes ne correspond pas "
-        f": {actual_features} != {expected_features}")
+    assert actual_features == expected_features, (
+        f"L'ordre des colonnes ne correspond pas "
+        f": {actual_features} != {expected_features}"
+    )
