@@ -4,7 +4,9 @@ import pytest
 
 from configs import core
 from intern_src.utils_package.data_transformation import (
-    TemporalTransformer, logarithm_transformer)
+    TemporalTransformer,
+    logarithm_transformer,
+)
 from tests.testconfig import sample_continuous_log_data, sample_input_data
 
 

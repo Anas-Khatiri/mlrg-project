@@ -1,8 +1,10 @@
 import pandas as pd
 
 from configs import core
-from intern_src.utils_package.data_prediction import (drop_missing_inputs,
-                                                      validate_inputs)
+from intern_src.utils_package.data_prediction import (
+    drop_missing_inputs,
+    validate_inputs,
+)
 from tests.testconfig import sample_input_data
 
 

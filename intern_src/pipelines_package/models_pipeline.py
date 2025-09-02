@@ -1,9 +1,13 @@
 # From scikit learn
 import xgboost as xgb
 from feature_engine.encoding import OrdinalEncoder, RareLabelEncoder
+
 # From feature_engine
-from feature_engine.imputation import (AddMissingIndicator, CategoricalImputer,
-                                       MeanMedianImputer)
+from feature_engine.imputation import (
+    AddMissingIndicator,
+    CategoricalImputer,
+    MeanMedianImputer,
+)
 from feature_engine.selection import DropFeatures
 from feature_engine.transformation import LogTransformer, YeoJohnsonTransformer
 from feature_engine.wrappers import SklearnTransformerWrapper
@@ -14,13 +18,13 @@ from sklearn.preprocessing import Binarizer, MinMaxScaler
 
 # From config_dir file
 from configs import core, models_params
+
 # From internal librairies
 from intern_src.utils_package.data_transformation import TemporalTransformer
 
 
 def create_base_pipeline():
-    """Creates a pipeline with a specified
-    alpha value for the Lasso model."""
+    """Creates a generated pipeline"""
     model_pipeline = Pipeline(
         [
             # categorical missing values

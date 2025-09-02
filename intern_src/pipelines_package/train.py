@@ -5,7 +5,10 @@ from sklearn.model_selection import train_test_split
 
 from configs import core, models_params
 from intern_src.pipelines_package.models_pipeline import (
-    create_lasso_pipeline, create_mlp_pipeline, create_xgb_pipeline)
+    create_lasso_pipeline,
+    create_mlp_pipeline,
+    create_xgb_pipeline,
+)
 from intern_src.utils_package.data_ingestion import load_dataset, save_pipeline
 from intern_src.utils_package.data_transformation import logarithm_transformer
 
