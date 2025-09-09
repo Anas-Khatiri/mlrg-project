@@ -5,7 +5,6 @@ WORKDIR /app
 # Copy necessary files into the container
 COPY . /app
 # Install the relevant packages
-RUN pip install --upgrade pip setuptools
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8000
